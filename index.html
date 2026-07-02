@@ -1654,6 +1654,142 @@
     word-wrap: break-word;
     overflow-wrap: anywhere;
   }
+
+  /* ═══════════════════════════════════════════════════════════════
+     STICKY BOTTOM CTA (mobile) — always-visible free audit bar
+     ═══════════════════════════════════════════════════════════════ */
+  .sticky-cta {
+    display: none;
+    position: fixed;
+    left: 12px; right: 12px; bottom: 12px;
+    z-index: 90;
+    padding: 10px 14px 10px 18px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px) saturate(1.7);
+    -webkit-backdrop-filter: blur(20px) saturate(1.7);
+    border: 1px solid rgba(19,75,130,0.14);
+    border-radius: 999px;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset, 0 12px 32px -12px rgba(19,75,130,0.35);
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    transition: transform .3s var(--ease), opacity .3s var(--ease);
+  }
+  .sticky-cta.hidden { transform: translateY(120%); opacity: 0; }
+  .sticky-cta-txt {
+    font-family: 'Manrope','DM Sans',sans-serif;
+    font-size: 13px; font-weight: 600; letter-spacing: -0.01em;
+    color: #0C1B2A;
+    line-height: 1.2;
+    display: flex; flex-direction: column;
+  }
+  .sticky-cta-txt small { font-weight: 400; font-size: 11px; color: #586474; letter-spacing: 0; }
+  .sticky-cta a.btn {
+    padding: 10px 18px;
+    font-size: 13px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #4A0D18, #6B1424);
+    color: #fff;
+    font-weight: 600;
+    white-space: nowrap;
+    animation: none;
+    box-shadow: 0 4px 14px -4px rgba(74,13,24,.5);
+  }
+  @media (max-width: 900px) {
+    .sticky-cta { display: flex; }
+    /* pad bottom of body so the sticky bar doesn't cover footer */
+    footer { padding-bottom: 96px; }
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     AGGRESSIVE MOBILE FIX PASS — buttons, spacing, leaks, dashboard
+     ═══════════════════════════════════════════════════════════════ */
+  @media (max-width: 640px) {
+    /* Hero button de-bulk */
+    .hero-cta .btn, .hero-btns .btn, .btn.lg, .btn.xl {
+      padding: 12px 20px !important;
+      font-size: 14px !important;
+      width: auto !important;
+      min-height: 44px;
+    }
+    .hero-cta, .hero-btns {
+      flex-direction: row !important;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .hero-cta .btn-primary, .hero-btns .btn-primary { flex: 0 0 auto; }
+    .scorecard-link { font-size: 13px; }
+
+    /* Hero breathing room */
+    .hero { padding: 40px 0 24px !important; }
+    .hero-grid { gap: 28px !important; }
+    .hero-copy { gap: 18px !important; }
+    .hero h1, .hero-h1 { margin-bottom: 2px; }
+    .lede, .hero-sub { margin-bottom: 6px; line-height: 1.55; }
+
+    /* LEAK cards - de-bulk */
+    .leak {
+      padding: 18px 16px !important;
+      border-radius: 12px !important;
+      gap: 10px !important;
+    }
+    .leak-ic { width: 34px !important; height: 34px !important; border-radius: 9px !important; }
+    .leak-ic svg { width: 17px; height: 17px; }
+    .leak h3 {
+      font-size: 15.5px !important;
+      line-height: 1.3 !important;
+      min-height: unset !important;
+      margin-bottom: 0 !important;
+    }
+    .leak p { font-size: 13.5px !important; line-height: 1.5 !important; }
+
+    /* DASHBOARD - de-bulk */
+    .dash { border-radius: 14px !important; }
+    .dash-head { padding: 10px 14px !important; }
+    .dash-avatar, .dash-head .dash-avatar { width: 28px !important; height: 28px !important; }
+    .dash-acct b { font-size: 12.5px; }
+    .dash-acct i { font-size: 10.5px; }
+    .dash-range { font-size: 10.5px; padding: 4px 8px; }
+    .dash-hero { padding: 18px 16px 16px !important; gap: 6px; }
+    .dash-hero-lbl { font-size: 9.5px !important; letter-spacing: 0.1em; }
+    .dash-hero-val { font-size: 44px !important; }
+    .dash-hero-delta { font-size: 10.5px; padding: 3px 7px; }
+    .dash-hero-sub { font-size: 12px; margin-top: 2px; }
+    .dash-ai {
+      margin: 0 12px 12px !important;
+      padding: 8px 10px !important;
+      gap: 8px;
+      border-radius: 8px;
+    }
+    .dash-ai .b { width: 22px; height: 22px; }
+    .dash-ai .b svg { width: 11px; height: 11px; }
+    .dash-ai .msg { font-size: 11.5px; line-height: 1.3; }
+    .dash-ai .live-lbl { font-size: 8.5px; }
+    .live-tag { font-size: 11px; margin-bottom: 8px; }
+    .float-chip { display: none !important; }
+    .glow { display: none; }
+
+    /* Reduce heading around leak/incl grids on mobile so section breathes */
+    section .head { margin-bottom: 20px; }
+
+    /* Slight tightening on inclusion cards */
+    .incl .it { padding: 20px 16px !important; }
+    .incl .ic { width: 32px; height: 32px; border-radius: 8px; }
+    .incl h3 { font-size: 15.5px !important; margin-bottom: 2px; }
+    .incl p { font-size: 13.5px !important; line-height: 1.5; }
+  }
+
+  @media (max-width: 380px) {
+    .hero-cta .btn, .hero-btns .btn { padding: 11px 18px !important; font-size: 13.5px !important; }
+    .leak { padding: 16px 14px !important; }
+    .leak h3 { font-size: 15px !important; }
+    .dash-hero-val { font-size: 40px !important; }
+    .sticky-cta { padding: 8px 12px 8px 16px; }
+    .sticky-cta a.btn { padding: 9px 14px; font-size: 12px; }
+    .sticky-cta-txt { font-size: 12px; }
+    .sticky-cta-txt small { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -1943,6 +2079,15 @@
 
 </main>
 
+<!-- Sticky mobile CTA -->
+<div class="sticky-cta" id="stickyCta" role="complementary" aria-label="Free audit CTA">
+  <div class="sticky-cta-txt">
+    Free Google Ads audit
+    <small>48-hour turnaround · no lock-in</small>
+  </div>
+  <a class="btn" href="#audit">Get audit →</a>
+</div>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="wide">
@@ -1993,6 +2138,21 @@
   function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(paint); } }
   measure(); paint();
   window.addEventListener('scroll', onScroll, { passive:true });
+
+  // Sticky mobile CTA — hide near top (in hero) and at very bottom (near footer)
+  var stickyCta = document.getElementById('stickyCta');
+  if (stickyCta) {
+    var hideUntil = 380; // px before showing (past hero)
+    function updateStickyCta(){
+      var y = window.pageYOffset || 0;
+      var atBottom = y + window.innerHeight >= document.body.scrollHeight - 120;
+      if (y < hideUntil || atBottom) stickyCta.classList.add('hidden');
+      else stickyCta.classList.remove('hidden');
+    }
+    stickyCta.classList.add('hidden');
+    window.addEventListener('scroll', updateStickyCta, { passive: true });
+    setTimeout(updateStickyCta, 100);
+  }
   window.addEventListener('resize', function(){ measure(); paint(); }, { passive:true });
   window.addEventListener('load', measure);
 
