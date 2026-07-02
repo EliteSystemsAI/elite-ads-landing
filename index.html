@@ -1546,6 +1546,114 @@
 
   /* Prevent iOS zoom on input focus */
   input, select, textarea { font-size: 16px; }
+
+  /* ═══════════════════════════════════════════════════════════════
+     MOBILE HARDENING — cards + banner + hero
+     ═══════════════════════════════════════════════════════════════ */
+
+  @media (max-width: 900px) {
+    /* Banner (proof strip under hero) */
+    .proof-inner { padding-block: 36px; gap: 18px; padding-inline: 16px; }
+    .proof h2 { font-size: 17px; line-height: 1.45; max-width: 100%; padding: 0 4px; text-wrap: balance; }
+    .proof-strip { gap: 8px; }
+    .proof-strip .c { font-size: 12.5px; padding: 8px 13px; }
+
+    /* Card grids */
+    .incl { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid-3 { grid-template-columns: 1fr; gap: 14px; }
+    .card-grid-3 { grid-template-columns: 1fr; gap: 14px; }
+    .diff-points { grid-template-columns: 1fr; gap: 14px; }
+
+    /* Card sizing */
+    .incl .it, .leak, .feat, .tier { padding: 24px 20px; border-radius: 16px; }
+    .incl .it h3, .leak h3, .feat h3, .tier h3 { font-size: 17px; }
+    .incl .it p, .leak p, .feat p, .tier p { font-size: 14.5px; line-height: 1.55; }
+  }
+
+  @media (max-width: 640px) {
+    /* Banner — tighter, punchier */
+    .proof-inner { padding-block: 28px; gap: 14px; padding-inline: 12px; }
+    .proof h2 { font-size: 16px; line-height: 1.4; padding: 0; }
+    .proof-strip { gap: 6px; }
+    .proof-strip .c { font-size: 12px; padding: 7px 12px; gap: 6px; }
+    .proof-strip .c svg { width: 13px; height: 13px; }
+
+    /* All card grids -> single column at this size */
+    .incl { grid-template-columns: 1fr; gap: 10px; }
+    .grid-3, .card-grid-3, .diff-points { gap: 10px; }
+
+    /* Card padding + hierarchy */
+    .incl .it, .leak, .feat, .tier {
+      padding: 22px 18px;
+      border-radius: 14px;
+      box-shadow: 0 1px 2px rgba(16,20,24,0.04), 0 6px 20px -10px rgba(19,75,130,0.12);
+    }
+
+    /* leak card: reset the min-h so single-line title doesn't create dead space */
+    .leak h3 { min-height: unset; margin-bottom: 2px; font-size: 17px; line-height: 1.3; }
+    .leak p { font-size: 14.5px; }
+
+    /* incl icons a bit smaller so card breathes */
+    .incl .ic { width: 34px; height: 34px; }
+
+    /* Feature (differentiator) cards */
+    .feat { padding: 22px 18px; gap: 10px; }
+    .feat .ic { width: 34px; height: 34px; }
+
+    /* Pricing tiers */
+    .tier { padding: 26px 22px; }
+    .tier .price b, .pricing-price { font-size: 30px; }
+
+    /* Container padding */
+    .container, .wrap, .wide { padding: 0 18px; }
+    section { padding: 60px 0; }
+
+    /* Section headings */
+    .head { margin-bottom: 24px; }
+    h2, .h2 { font-size: clamp(24px, 6.5vw, 32px); line-height: 1.15; }
+    p.sub, .sec-body { font-size: 15px; }
+
+    /* Hero tighter */
+    .hero { padding: 52px 0 32px; }
+    .hero h1, .hero-h1 { font-size: clamp(30px, 8.5vw, 40px) !important; line-height: 1.05; }
+    .lede, .hero-sub { font-size: 15.5px; max-width: 100%; }
+    .hero-cta, .hero-btns { gap: 10px; }
+
+    /* Hero eyebrow + tag */
+    .tag { font-size: 12px; padding: 5px 12px 5px 10px; }
+    .reassure { font-size: 12.5px; gap: 12px; }
+    .reassure span { gap: 5px; }
+
+    /* Dashboard mockup card sizing */
+    .dash { border-radius: 16px; margin: 0 !important; }
+    .visual { margin: 0 !important; }
+    .dash-head { padding: 12px 14px; }
+    .dash-hero { padding: 22px 18px 20px; }
+    .dash-hero-val { font-size: clamp(44px, 12vw, 56px) !important; }
+    .dash-hero-lbl { font-size: 10px; }
+    .dash-hero-sub { font-size: 13px; }
+
+    /* AI insight strip inside dash */
+    .dash-ai { margin: 0 14px 14px; padding: 10px 12px; }
+    .dash-ai .msg { font-size: 12px; }
+  }
+
+  @media (max-width: 380px) {
+    .container, .wrap, .wide { padding: 0 14px; }
+    section { padding: 52px 0; }
+    .incl .it, .leak, .feat, .tier { padding: 20px 16px; }
+    .hero h1, .hero-h1 { font-size: 28px !important; }
+    .proof h2 { font-size: 15px; }
+    .proof-strip .c { font-size: 11.5px; padding: 6px 10px; }
+    .dash-hero-val { font-size: 44px !important; }
+  }
+
+  /* Universal safety: prevent any card from overflowing its container */
+  .card, .incl .it, .leak, .feat, .tier, .dash, .faq {
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+  }
 </style>
 </head>
 <body>
